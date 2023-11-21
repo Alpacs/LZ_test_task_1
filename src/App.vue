@@ -114,12 +114,14 @@ export default {
       this.cssRuleButton.login.colorBG = '#9E896A'
       this.cssRuleButton.reg.colorFont = "#9E896A"
       this.cssRuleButton.reg.colorBG = '#F8EDDD'
+      this.hidePass = true
     },
     activeRegisterForm() {
       this.cssRuleButton.reg.colorFont = 'white'
       this.cssRuleButton.reg.colorBG = '#9E896A'
       this.cssRuleButton.login.colorFont = '#9E896A'
       this.cssRuleButton.login.colorBG = '#F8EDDD'
+      this.hidePass = true
     }
   }
 }
