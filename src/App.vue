@@ -10,16 +10,15 @@
       <h1>Welcome to lorem..!</h1>
       <!-- Переключатель форм -->
       <div class="switch-form">
-        <span :style="cssRuleSwitch" class="switch-curtain"></span>
-        <p @click="activeLoginForm()" :style="'color:' + cssRuleButtonLogin" class="button-switch-form">Login</p>
-        <p @click="activeRegisterForm()" :style="'color:' + cssRuleButtonReg" class="button-switch-form">Register</p>
+        <button @click="activeLoginForm()" :style="'color:' + cssRuleButtonLogin.colorFont + '; background-color: ' + cssRuleButtonLogin.colorBG" class="button-switch-form">Login</button>
+        <button @click="activeRegisterForm()" :style="'color:' + cssRuleButtonReg.colorFont + '; background-color: ' + cssRuleButtonReg.colorBG" class="button-switch-form">Register</button>
       </div>
       <!-- Форма логина -->
       <form 
         autocomplete="on"
         method="POST"
         action="/Login"
-        v-if="cssRuleButton.switch === 'left: 0'" class="login-form-block forms"
+        v-if="cssRuleButton.login.colorBG === '#9E896A'" class="login-form-block forms"
         >
         <h1>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h1>
         <div class="input-username-block">
@@ -42,7 +41,7 @@
         autocomplete="on"
         method="POST"
         action="/Register"
-        v-if="cssRuleButton.switch === 'right: 0'" class="reg-form-block forms"
+        v-if="cssRuleButton.reg.colorBG === '#9E896A'" class="reg-form-block forms"
         >
         <h1>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h1>
 
@@ -78,25 +77,29 @@ export default {
     return {
       cssRuleButton: {
         login: {
-          colorFont: 'white'
+          colorFont: 'white',
+          colorBG: '#9E896A'
         },
         reg: {
-          colorFont: '#9E896A'
-        },
-        switch: 'left: 0'
+          colorFont: '#9E896A',
+          colorBG: '#F8EDDD'
+        }
       },
       hidePass: true
     }
   },
   computed: {
       cssRuleButtonLogin() {
-        return this.cssRuleButton.login.colorFont
+        return {
+          colorFont: this.cssRuleButton.login.colorFont,
+          colorBG: this.cssRuleButton.login.colorBG
+        }
       },
       cssRuleButtonReg() {
-        return this.cssRuleButton.reg.colorFont
-      },
-      cssRuleSwitch() {
-        return this.cssRuleButton.switch
+        return {
+          colorFont: this.cssRuleButton.reg.colorFont,
+          colorBG: this.cssRuleButton.reg.colorBG
+        }
       },
       typeOfinput() {
         if(this.hidePass) {
@@ -108,13 +111,15 @@ export default {
   methods: {
     activeLoginForm() {
       this.cssRuleButton.login.colorFont = 'white'
+      this.cssRuleButton.login.colorBG = '#9E896A'
       this.cssRuleButton.reg.colorFont = "#9E896A"
-      this.cssRuleButton.switch = 'left: 0'
+      this.cssRuleButton.reg.colorBG = '#F8EDDD'
     },
     activeRegisterForm() {
       this.cssRuleButton.reg.colorFont = 'white'
+      this.cssRuleButton.reg.colorBG = '#9E896A'
       this.cssRuleButton.login.colorFont = '#9E896A'
-      this.cssRuleButton.switch = 'right: 0'
+      this.cssRuleButton.login.colorBG = '#F8EDDD'
     }
   }
 }
@@ -199,27 +204,21 @@ table{border-collapse:collapse;border-spacing:0}
       position: relative;
       margin: 0 auto 52px; 
       box-sizing: border-box;
-      padding: 0 60px 0 64px;
+      padding: 0 13px;
       justify-content: space-between;
       align-items: center;
       border-radius: 33px;
       background-color: #F8EDDD;
       height: 59px;
-      .switch-curtain {
-        z-index: 1;
-
+      .button-switch-form {
         display: block;
-        margin: 0 13px;
-        position: absolute;
         width: 146px;
         height: 40px;
-        border-radius: 33px;
         background: #9E896A;
+        border-radius: 33px;
         border: 0;
-      }
-      .button-switch-form {
-        z-index: 2;
         cursor: pointer;
+
         color: #FFF;
         font-family: Poppins, sans-serif;
         font-size: 16px;
